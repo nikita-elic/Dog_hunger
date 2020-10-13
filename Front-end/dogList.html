@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Dog list</title>
+
+  <link rel="shortcut icon" href="./img/profile.png" type="image/png">
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Plugin CSS -->
+  <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/freelancer.min.css" rel="stylesheet" type="text/css">
+
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
+
+</head>
+
+<body id="page-top" onload="dogList()">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav"
+    style="padding-top: 1rem; padding-bottom: 1rem; padding-left: 0%; padding-right: 0%;">
+    <div class="container-fluid" style="padding-left: 0%; padding-right: 0%;">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/my_logo.png" width="200" height="85"
+          alt=""></a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button"
+        data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation" style="margin-right: 20px;">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto" style="padding-right: 20px; font-size: 1.1rem;">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html"><span
+                id="mainPage"></span></a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="dogList.html"><span
+                id="dogListPage"></span></a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="profile.html"><span
+                id="profilePage"></span></a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a id="loginBtnA" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#" data-toggle="modal"
+              href="javascript:void(0)"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+
+
+  <div class="container">
+    <div class="modal fade login" id="loginModal">
+      <div class="modal-dialog login animated">
+        <div class="modal-content" style="margin-left: auto; margin-right: auto;">
+          <div class="modal-header">
+            <h4 class="modal-title">Login</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <hr>
+            <div class="box">
+              <div class="content">
+                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                <div class="notification"></div>
+                <div class="form loginBox">
+                  <form method="post" action="" accept-charset="UTF-8">
+                    <input id="email" class="form-control" type="email" placeholder="Email" name="email" required>
+                    <input id="password" class="form-control" type="password" placeholder="Password" name="password"
+                      required>
+                    <input class="btn btn-default btn-login" type="button" value="Login" onclick="login()">
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="box">
+              <div class="content registerBox" style="display:none;">
+                <div class="form">
+                  <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                    <input id="emailREG" class="form-control" type="email" placeholder="Email" name="email" required>
+                    <input id="name" class="form-control" type="text" placeholder="Name" name="name" required>
+                    <input id="surname" class="form-control" type="text" placeholder="Surname" name="surname" required>
+                    <input id="passwordREG" class="form-control" type="password" placeholder="Password" name="password"
+                      required>
+                    <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password"
+                      name="password_confirmation" required>
+                    <input class="btn btn-default btn-register" type="button" value="Create account"
+                      onclick="registration()" name="commit">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="forgot login-footer">
+              <span>Looking to
+                <a href="javascript: showRegisterForm();">create an account</a>
+                ?</span>
+            </div>
+            <div class="forgot register-footer" style="display:none">
+              <span>Already have an account?</span>
+              <a href="javascript: showLoginForm();">Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Grid Section -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <h2 class="text-center text-uppercase text-secondary mb-0"><span id="vocDogList"></span></h2>
+      <hr class="star-dark mb-5">
+      <div class="row" id="dogListBody">
+      </div>
+    </div>
+  </section>
+
+  <div id="addDog" class="modal fade">
+    <div class="modal-dialog" style="max-width: 600px">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><span id="vocAddNewDog"></span></h4>
+          <button class="close" type="button" data-dismiss="modal" style="outline:0;"><i class="fa fa-times"
+              aria-hidden="true"></i></button>
+        </div>
+        <div class="modal-body bootstrap snippet">
+          <div class="row">
+            <div class="col-sm-12" style="position: static;">
+              <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                  <form class="form" action="##" method="post" id="registrationForm">
+                    <div class="notification"></div>
+                    <div class="form-group">
+                      <div class="col-xs-12" style="position: static;">
+                        <label for="dog_name">
+                          <h4><span class="dogName"></span></h4>
+                        </label>
+                        <input type="text" class="form-control" name="dog_name" id="addDogName" value=""
+                          title="Enter your dog name if any.">
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                      <div class="col-xs-12" style="position: static;">
+                        <label for="dog_size">
+                          <h4><span class="dogSize"></span></h4>
+                        </label>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text size" for="dogSizeAdd"></label>
+                          </div>
+                          <select class="custom-select" id="dogSizeAdd">
+                            <option>Small</option>
+                            <option>Average</option>
+                            <option>Large</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                      <div class="col-xs-12" style="position: static;">
+                        <label for="dog_size">
+                          <h4><span class="dogWeight"></span></h4>
+                        </label>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text weight" for="dogWeightAdd"></label>
+                          </div>
+                          <input type="text" class="form-control" id="dogWeightAdd" value="">
+                          <div class="input-group-append">
+                            <span class="input-group-text kilos"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                      <div class="col-xs-12" style="position: static;">
+                        <label for="dog_info">
+                          <h4><span class="dogInfo"></span></h4>
+                        </label>
+                        <textarea class="form-control" id="addDogInfo" rows="3"
+                          title="Enter dog information if any."></textarea>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                      <div class="col-xs-12" style="position: static;">
+                        <label for="dogImg">
+                          <h4><span id="dogImgIns"></span>
+                            <font size="1">(<span id="ntnssr"></span>)</font>
+                          </h4>
+                        </label>
+                        <div class="input-group mb-3">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="imgFileAdd"
+                              onchange="readURL(this, 'Add');" style="width: 100%;">
+                            <label id="labelImgAdd" class="custom-file-label" for="imgFileAdd"><span
+                                class="chooseImg"></span></label>
+                          </div>
+                        </div>
+                        <div id="progressAdd" style="height: 30px;">
+                          <div id="progressBarLoadAdd" class="progress-bar progress-bar-striped progress-bar-animated"
+                            role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                            style="width: 0%; background-color: #CBB658;"></div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="editSaveBtnAdd" onclick="addDog()"></button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal"><span class="closeBtn"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="dogModalInfo" class="modal fade">
+    <div class="modal-dialog" style="max-width: 600px">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><span id="dogInfoLabel"></span></h4>
+          <button class="close" type="button" data-dismiss="modal" onclick="clearModal()" style="outline:0;"><i
+              class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+        <div class="modal-body bootstrap snippet">
+          <div class="row">
+            <div class="col-sm-12" style="position: static;">
+              <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                  <form class="form" action="##" method="post" id="registrationForm">
+                    <div class="notification"></div>
+                    <div class="form-group">
+                      <div class="col-xs-12" style="position: static;">
+                        <div class="container-fluid" id="dogLogo"
+                          style="height: 205px; width: 286px; background: url() center no-repeat; background-size: cover; border: 1px solid rgba(0,0,0,.125); border-radius: .25rem;">
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                      <div class="col-xs-12" style="position: static;">
+                        <label for="dog_name">
+                          <h4><span class="dogName"></span></h4>
+                        </label>
+                        <input type="text" class="form-control" name="dog_name" id="dogName" value=""
+                          title="Enter your dog name if any." readonly>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                      <div class="col-xs-12" style="position: static;">
+                        <label for="dog_size">
+                          <h4><span class="dogSize"></span></h4>
+                        </label>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text size" for="dogSize"></label>
+                          </div>
+                          <select class="custom-select" id="dogSize" disabled>
+                            <option id="1">Small</option>
+                            <option id="2">Average</option>
+                            <option id="3">Large</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                      <div class="col-xs-12" style="position: static;">
+                        <label for="dog_size">
+                          <h4><span class="dogWeight"></span></h4>
+                        </label>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text weight" for="dogWeight"></label>
+                          </div>
+                          <input type="text" class="form-control" id="dogWeight" value="" readonly>
+                          <div class="input-group-append">
+                            <span class="input-group-text kilos"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                      <div class="col-xs-12" style="position: static;">
+                        <label for="dog_info">
+                          <h4><span class="dogInfo"></span></h4>
+                        </label>
+                        <textarea readonly class="form-control" id="dogInfo" rows="5"
+                          title="Enter dog information if any."></textarea>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                      <div class="col-xs-12" style="position: static;">
+                        <label for="dog_info">
+                          <h4><span id="rplInsPic"></span></h4>
+                        </label>
+                        <div class="input-group mb-3">
+                          <div class="custom-file">
+                            <input disabled type="file" class="custom-file-input" id="imgFile"
+                              onchange="readURL(this,'Edit');" style="width: 100%;">
+                            <label id="labelImgEdit" class="custom-file-label" for="imgFile"><span
+                                class="chooseImg"></span></label>
+                          </div>
+                        </div>
+                        <div id="progressEdit" style="margin-top: 5px; height: 30px;">
+                          <div id="progressBarLoadEdit" class="progress-bar progress-bar-striped progress-bar-animated"
+                            role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                            style="width: 0%; background-color: #CBB658;"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                      <div class="col-xs-12" style="position: static;">
+                        <label for="dog_info">
+                          <h4><span id="stat"></span></h4>
+                        </label>
+                        <div class="accordion" id="accordionExample">
+                          <div class="card">
+                            <div class="card-header" id="headingOne" style="background-color: #e9ecef;">
+                              <h4 class="mb-0">
+                                <button id="dailyStat" class="btn btn-block text-left" type="button"
+                                  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                  aria-controls="collapseOne">
+                                </button>
+                              </h4>
+                            </div>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                              data-parent="#accordionExample">
+                              <div class="card-body">
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <label class="input-group-text" for="dogDailyStat"><span
+                                        id="statSelect"></span></label>
+                                  </div>
+                                  <select class="custom-select" id="dogDailyStat">
+                                  </select>
+                                  <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" style="border-width:1px"
+                                      onclick="redrawDogDailyStat()"><span id="select"></span></button>
+                                  </div>
+                                </div>
+                                <br>
+                                <div id="dailyChart"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div class="card-header" id="headingTwo" style="background-color: #e9ecef;">
+                              <h4 class="mb-0">
+                                <button id="weeklyStat" class="btn btn-block text-left collapsed" type="button"
+                                  data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                  aria-controls="collapseTwo">
+                                </button>
+                              </h4>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                              data-parent="#accordionExample">
+                              <div class="card-body">
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <label class="input-group-text" for="dogWeeklyStat"><span id="statSelect">Select
+                                        week</span></label>
+                                  </div>
+                                  <select class="custom-select" id="dogWeeklyStat">
+                                  </select>
+                                  <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" style="border-width:1px"
+                                      onclick="redrawDogWeeklyStat()"><span id="select">Select</span></button>
+                                  </div>
+                                </div>
+                                <br>
+                                <div id="weeklyChart"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div class="card-header" id="headingThree" style="background-color: #e9ecef;">
+                              <h4 class="mb-0">
+                                <button id="getNutrition" class="btn btn-block text-left collapsed" type="button"
+                                  data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                                  aria-controls="collapseThree">
+                                </button>
+                              </h4>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                              data-parent="#accordionExample">
+                              <div class="card-body">
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend" style="width: 40%;">
+                                    <span class="input-group-text" id="basic-addon3" style="width: 100%;">Average
+                                      heartbeat<i class="fas fa-heartbeat" style="padding-left: 5px;"></i></span>
+                                  </div>
+                                  <input type="text" class="form-control" id="avrHeartInput"
+                                    aria-describedby="basic-addon3">
+                                </div>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend" style="width: 40%;">
+                                    <span class="input-group-text" id="basic-addon3" style="width: 100%;">Average
+                                      temperature<i class="fas fa-thermometer-half"
+                                        style="padding-left: 5px;"></i></span>
+                                  </div>
+                                  <input type="text" class="form-control" id="avrTempInput"
+                                    aria-describedby="basic-addon3">
+                                </div>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend" style="width: 40%;">
+                                    <span class="input-group-text" id="basic-addon3" style="width: 100%;">Average
+                                      systolic pressure<i class="far fa-heart" style="padding-left: 5px;"></i></span>
+                                  </div>
+                                  <input type="text" class="form-control" id="avrSysPreInput"
+                                    aria-describedby="basic-addon3">
+                                </div>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend" style="width: 40%;">
+                                    <span class="input-group-text" id="basic-addon3" style="width: 100%;">Average
+                                      diastolic pressure<i class="fas fa-heart" style="padding-left: 5px;"></i></span>
+                                  </div>
+                                  <input type="text" class="form-control" id="avrDiasPreInput"
+                                    aria-describedby="basic-addon3">
+                                </div>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend" style="width: 40%;">
+                                    <span class="input-group-text" id="basic-addon3" style="width: 100%;">Minimum
+                                      temperature<i class="fas fa-thermometer-empty"
+                                        style="padding-left: 5px;"></i></span>
+                                  </div>
+                                  <input type="text" class="form-control" id="minTempInput"
+                                    aria-describedby="basic-addon3">
+                                </div>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend" style="width: 40%;">
+                                    <span class="input-group-text" id="basic-addon3" style="width: 100%;">Maximum
+                                      temperature<i class="fas fa-thermometer-full"
+                                        style="padding-left: 5px;"></i></span>
+                                  </div>
+                                  <input type="text" class="form-control" id="maxTempInput"
+                                    aria-describedby="basic-addon3">
+                                </div>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend" style="width: 40%;">
+                                    <span class="input-group-text" id="basic-addon3" style="width: 100%;">Minimum
+                                      heartbeat<i class="far fa-heart" style="padding-left: 5px;"></i></span>
+                                  </div>
+                                  <input type="text" class="form-control" id="minHeartInput"
+                                    aria-describedby="basic-addon3">
+                                </div>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend" style="width: 40%;">
+                                    <span class="input-group-text" id="basic-addon3" style="width: 100%;">Maximum
+                                      heartbeat<i class="fas fa-heart" style="padding-left: 5px;"></i></span>
+                                  </div>
+                                  <input type="text" class="form-control" id="maxHeartInput"
+                                    aria-describedby="basic-addon3">
+                                </div>
+                                <label for="dog_info">
+                                  <h4><span>Nutrition recommendations</span></h4>
+                                </label>
+                                <textarea readonly class="form-control" id="nutritionRecommendations" rows="5"
+                                  title="Enter dog information if any."></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="notification"
+            style="width: 100%; padding: .375rem .75rem; margin-bottom: 0rem; border-width: 2px;"></div>
+          <button type="button" class="btn btn-primary" id="editSaveBtnEdit" onclick="editDogInfo()"></button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal" onclick="clearModal()"><span
+              class="closeBtn"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-5 mb-lg-0">
+          <h4 class="text-uppercase mb-4"><span id="location"></span></h4>
+          <p class="lead mb-0">2215 John Daniel Drive
+            <br>Clark, MO 65243</p>
+        </div>
+        <div class="col-md-4 mb-5 mb-lg-0">
+          <h4 class="text-uppercase mb-4"><span id="web"></span></h4>
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item">
+              <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                <i class="fab fa-fw fa-facebook-f"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                <i class="fab fa-fw fa-google-plus-g"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                <i class="fab fa-fw fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                <i class="fab fa-fw fa-linkedin-in"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                <i class="fab fa-fw fa-dribbble"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4 class="text-uppercase mb-4"><span id="selectLang"></span></h4>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><big>Choose one</big></button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" onclick="selectLanguage('en')">English</a>
+              <a class="dropdown-item" onclick="selectLanguage('ua')">Ukrainian</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="copyright py-4 text-center text-white">
+    <div class="container">
+      <small>Copyright &copy; Nikita Yelistratov 2019</small>
+    </div>
+  </div>
+
+  <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+  <div class="scroll-to-top d-lg-none position-fixed ">
+    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+
+  <!-- Contact Form JavaScript -->
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/connection.js"></script>
+  <script src="js/freelancer.js"></script>
+
+</body>
+
+</html>

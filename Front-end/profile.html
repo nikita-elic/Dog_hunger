@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Profile</title>
+
+    <link rel="shortcut icon" href="./img/profile.png" type="image/png">
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css">
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/freelancer.min.css" rel="stylesheet">
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.0.min.js"></script>
+
+</head>
+
+<body id="page-top" onload="profileLoad()">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/my_logo.png" width="200"
+                    height="85" alt=""></a>
+            <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded"
+                type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html">Main</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="dogList.html">Dog list</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="profile.html">Profile</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a id="loginBtnA" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#"
+                            data-toggle="modal" href="javascript:void(0)"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+
+
+    <div class="container">
+        <div class="modal fade login" id="loginModal">
+            <div class="modal-dialog login animated">
+                <div class="modal-content" style="margin-left: auto; margin-right: auto;">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Login</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <hr>
+                        <div class="box">
+                            <div class="content">
+                                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                                <div class="notification"></div>
+                                <div class="form loginBox">
+                                    <form method="post" action="" accept-charset="UTF-8">
+                                        <input id="email" class="form-control" type="email" placeholder="Email"
+                                            name="email" required>
+                                        <input id="password" class="form-control" type="password" placeholder="Password"
+                                            name="password" required>
+                                        <input class="btn btn-default btn-login" type="button" value="Login"
+                                            onclick="login()">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="content registerBox" style="display:none;">
+                                <div class="form">
+                                    <form method="" html="{:multipart=>true}" data-remote="true" action=""
+                                        accept-charset="UTF-8">
+                                        <input id="emailREG" class="form-control" type="email" placeholder="Email"
+                                            name="email" required>
+                                        <input id="name" class="form-control" type="text" placeholder="Name" name="name"
+                                            required>
+                                        <input id="surname" class="form-control" type="text" placeholder="Surname"
+                                            name="surname" required>
+                                        <input id="passwordREG" class="form-control" type="password"
+                                            placeholder="Password" name="password" required>
+                                        <input id="password_confirmation" class="form-control" type="password"
+                                            placeholder="Repeat Password" name="password_confirmation" required>
+                                        <input class="btn btn-default btn-register" type="button" value="Create account"
+                                            onclick="registration()" name="commit">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="forgot login-footer">
+                            <span>Looking to
+                                <a href="javascript: showRegisterForm();">create an account</a>
+                                ?</span>
+                        </div>
+                        <div class="forgot register-footer" style="display:none">
+                            <span>Already have an account?</span>
+                            <a href="javascript: showLoginForm();">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Grid Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h2 class="text-center text-uppercase text-secondary mb-0">Profile</h2>
+            <hr class="star-dark mb-5">
+            <div class="container-fluid" style="background-color: white">
+                <div class="container bootstrap snippet">
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col-sm-3" style="position: static;">
+                            <!--left col-->
+
+
+                            <div class="text-center">
+                                <img style="height: 250px; width: auto; max-width: 100%" id="KianosPlace"
+                                    src="img/imageNotAvailable.jpg" border="0" class="avatar img-circle img-thumbnail">
+                                <input type='file' onchange="readURL(this);" class="btn btn-primary"
+                                    style="max-width: 100%;margin-top: 10px"></input>
+
+                            </div>
+                            </hr>
+                        </div>
+                        <!--/col-3-->
+                        <div class="col-sm-9" style="position: static;">
+
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="home">
+                                    <hr>
+                                    <form class="form" action="##" method="post" id="registrationForm">
+
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="first_name">
+                                                    <h4>Name</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="first_name"
+                                                    id="first_name" placeholder="Your name" value="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="last_name">
+                                                    <h4>Surname</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="last_name" id="last_name"
+                                                    placeholder="Your surname" value="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="email">
+                                                    <h4>Email</h4>
+                                                </label>
+                                                <input readonly type="email" class="form-control" name="email"
+                                                    id="emailProfile" placeholder="you@email.com" value=""
+                                                    title="enter your email.">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <div id="PasswordDiv" class="col-xs-6" style="position: static;">
+                                                <label for="password">
+                                                    <h4>Password</h4>
+                                                </label>
+                                                <input type="password" class="form-control" name="password"
+                                                    id="passwordProfile" placeholder="Your password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div id="PasswordConfirmDiv" class="col-xs-6" style="position: static;">
+                                                <label for="password2">
+                                                    <h4>Verify</h4>
+                                                </label>
+                                                <input type="password" class="form-control" name="password2"
+                                                    id="password2" placeholder="Confirm password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-xs-12" style="position: static;">
+                                                <br>
+                                                <button id="SaveBtn" onclick="SaveProfile()" class="btn btn-primary"
+                                                    type="button"><a href="#" class="glyphicon glyphicon-ok-sign"></a>
+                                                    Save</button>
+                                                <button id="ResetBtn" class="btn btn-primary" type="reset"><i
+                                                        class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <hr>
+
+                                </div>
+                                <!--/tab-pane-->
+                                <div class="tab-pane" id="messages">
+
+                                    <h2></h2>
+
+                                    <hr>
+                                    <form class="form" action="##" method="post" id="registrationForm">
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="first_name">
+                                                    <h4>Name</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="first_name"
+                                                    id="first_name" placeholder="Your name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="last_name">
+                                                    <h4>Surname</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="last_name" id="last_name"
+                                                    placeholder="Your surname">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="email">
+                                                    <h4>Email</h4>
+                                                </label>
+                                                <input type="email" class="form-control" name="email" id="emailProfile"
+                                                    placeholder="you@email.com" title="enter your email.">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="email">
+                                                    <h4>Location</h4>
+                                                </label>
+                                                <input type="email" class="form-control" id="location"
+                                                    placeholder="somewhere" title="enter a location">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="password">
+                                                    <h4>Password</h4>
+                                                </label>
+                                                <input type="password" class="form-control" name="password"
+                                                    id="passwordProfile" placeholder="Your password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="password2">
+                                                    <h4>Verify</h4>
+                                                </label>
+                                                <input type="password" class="form-control" name="password2"
+                                                    id="password2" placeholder="Confirm password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-xs-12" style="position: static;">
+                                                <br>
+                                                <button class="btn btn-primary" type="button" onclick="SaveProfile()"><i
+                                                        class="glyphicon glyphicon-ok-sign"></i>
+                                                    Save</button>
+                                                <button class="btn btn-primary" type="reset"><i
+                                                        class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <!--/tab-pane-->
+                                <div class="tab-pane" id="settings">
+
+
+                                    <hr>
+                                    <form class="form" action="##" method="post" id="registrationForm">
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="first_name">
+                                                    <h4>Name</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="first_name"
+                                                    id="first_name" placeholder="Your name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="last_name">
+                                                    <h4>Surname</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="last_name" id="last_name"
+                                                    placeholder="Your surname">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="email">
+                                                    <h4>Email</h4>
+                                                </label>
+                                                <input readonly type="email" class="form-control" name="email"
+                                                    id="emailProfile" placeholder="you@email.com"
+                                                    title="enter your email.">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="email">
+                                                    <h4>Location</h4>
+                                                </label>
+                                                <input type="email" class="form-control" id="location"
+                                                    placeholder="somewhere" title="enter a location">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="password">
+                                                    <h4>Password</h4>
+                                                </label>
+                                                <input type="password" class="form-control" name="password"
+                                                    id="passwordProfile" placeholder="Your password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="col-xs-6" style="position: static;">
+                                                <label for="password2">
+                                                    <h4>Verify</h4>
+                                                </label>
+                                                <input type="password" class="form-control" name="password2"
+                                                    id="password2" placeholder="Confirm password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-xs-12" style="position: static;">
+                                                <br>
+                                                <button class="btn btn-lg btn-success pull-right"><a class="nav-link"
+                                                        href="#" data-toggle="modal" href="javascript:void(0)"
+                                                        style="color: white;" onclick="SaveProfile()">Save</a>
+                                                </button>
+
+                                                <!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>-->
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                            <!--/tab-pane-->
+                        </div>
+                        <!--/tab-content-->
+
+                    </div>
+                    <!--/col-9-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="addDog" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add new dog</h4>
+                    <button class="close" type="button" data-dismiss="modal" style="outline:0;">×</button>
+                </div>
+                <div class="modal-body bootstrap snippet">
+                    <div class="row">
+                        <div class="col-sm-12" style="position: static;">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="home">
+                                    <form class="form" action="##" method="post" id="registrationForm">
+                                        <div class="notification"></div>
+                                        <div class="form-group">
+                                            <div class="col-xs-12" style="position: static;">
+                                                <label for="dog_name">
+                                                    <h4>Dog name</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="dog_name" id="dogName"
+                                                    value="" title="Enter your dog name if any." placeholder="Dog name">
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="form-group">
+                                            <div class="col-xs-12" style="position: static;">
+                                                <label for="dog_info">
+                                                    <h4>Information about your dog</h4>
+                                                </label>
+                                                <textarea class="form-control" id="dogInfo" rows="3"
+                                                    placeholder="Some information about your dog..."
+                                                    title="Enter dog information if any."></textarea>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="form-group">
+                                            <div class="col-xs-12" style="position: static;">
+                                                <label for="dogImg">
+                                                    <h4>Image with your dog
+                                                        <font size="1">(not necessary)</font>
+                                                    </h4>
+                                                </label>
+                                                <input type='file' id="imgFile" onchange="readURL(this);"
+                                                    class="btn btn-primary" style="width: 100%;"></input>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="succsessMessage" onclick="addDog()">Add</button>
+                    <button class="btn btn-danger" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Location</h4>
+                    <p class="lead mb-0">2215 John Daniel Drive
+                        <br>Clark, MO 65243</p>
+                </div>
+                <div class="col-md-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Around the Web</h4>
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                                <i class="fab fa-fw fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                                <i class="fab fa-fw fa-google-plus-g"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                                <i class="fab fa-fw fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                                <i class="fab fa-fw fa-linkedin-in"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                                <i class="fab fa-fw fa-dribbble"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="text-uppercase mb-4">About Freelancer</h4>
+                    <p class="lead mb-0">Freelance is a free to use, open source Bootstrap theme created by
+                        <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="copyright py-4 text-center text-white">
+        <div class="container">
+            <small>Copyright &copy; Your Website 2019</small>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-to-top d-lg-none position-fixed ">
+        <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/connection.js"></script>
+    <script src="js/freelancer.js"></script>
+
+</body>
+
+</html>
